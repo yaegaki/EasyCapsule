@@ -1,0 +1,17 @@
+{
+  "name": "カプセル化君",
+  "description": "あらゆるものを簡単にカプセル化します.",
+  "version": "0.1",
+  "permissions": [
+    "contextMenus",
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "background": {
+    "scripts": [
+      "main.js"
+    ],
+    "persistent": false
+  },
+  "icons": {},
+  "manifest_version": 2
+}
