@@ -15,16 +15,25 @@ function getAllNodeCore(anchor, focus, memo) {
 	let temp = anchor;
 	while (temp != null && temp.nextSibling == null) {
 		temp = temp.parentNode;
+		if (temp == focus) {
+			return true;
+		}
 	}
 	
 	if (temp == null || temp.nextSibling == null) {
 		return false;
 	}
 	temp = temp.nextSibling;
+	if (temp == focus) {
+		return true;
+	}
 	
 	// 一番下まで掘る
 	while (temp.childNodes.length > 0) {
 		temp = temp.childNodes[0];
+		if (temp == focus) {
+			return true;
+		}
 	}
 	
 	return getAllNodeCore(temp, focus, memo);
