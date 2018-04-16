@@ -36,7 +36,14 @@ function ReplaceToCapsule() {
 	let focus = selObj.focusNode;
 	let anchorOffset = selObj.anchorOffset;
 	let focusOffset = selObj.focusOffset;
-	let nodes = getAllNode(anchor, focus);
+	let nodes = [];
+	try
+	{
+		nodes = getAllNode(anchor, focus);
+	}
+	catch (e)
+	{
+	}
 	if (nodes.length == 0) {
 		// 逆かもしれない
 		let temp = anchor;
@@ -47,6 +54,13 @@ function ReplaceToCapsule() {
 		anchorOffset = focusOffset;
 		focusOffset = tempOffset;
 	}
+
+	if (anchorOffset > focusOffset && anchor == focus) {
+		let tempOffset = anchorOffset;
+		anchorOffset = focusOffset;
+		focusOffset = tempOffset;
+	}
+
 	nodes.forEach(node =>
 	{
 		var len = node.textContent.replace(/\s/g, "").length;
