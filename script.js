@@ -7,36 +7,38 @@ function getAllNode(anchor, focus) {
 }
 
 function getAllNodeCore(anchor, focus, memo) {
-	memo.push(anchor);
-	if (anchor == focus) {
-		return true;
-	}
-	
-	let temp = anchor;
-	while (temp != null && temp.nextSibling == null) {
-		temp = temp.parentNode;
+	while (true) {
+		memo.push(anchor);
+		if (anchor == focus) {
+			return true;
+		}
+		
+		let temp = anchor;
+		while (temp != null && temp.nextSibling == null) {
+			temp = temp.parentNode;
+			if (temp == focus) {
+				return true;
+			}
+		}
+		
+		if (temp == null || temp.nextSibling == null) {
+			return false;
+		}
+		temp = temp.nextSibling;
 		if (temp == focus) {
 			return true;
 		}
-	}
-	
-	if (temp == null || temp.nextSibling == null) {
-		return false;
-	}
-	temp = temp.nextSibling;
-	if (temp == focus) {
-		return true;
-	}
-	
-	// 一番下まで掘る
-	while (temp.childNodes.length > 0) {
-		temp = temp.childNodes[0];
-		if (temp == focus) {
-			return true;
+		
+		// 一番下まで掘る
+		while (temp.childNodes.length > 0) {
+			temp = temp.childNodes[0];
+			if (temp == focus) {
+				return true;
+			}
 		}
+
+		anchor = temp;
 	}
-	
-	return getAllNodeCore(temp, focus, memo);
 }
 
 function ReplaceToCapsule() {
