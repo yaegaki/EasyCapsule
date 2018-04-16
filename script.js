@@ -71,6 +71,9 @@ function ReplaceToCapsule() {
 		anchorOffset = focusOffset;
 		focusOffset = tempOffset;
 	}
+	if (nodes.length > 0 && nodes[nodes.length - 1] != focus) {
+		nodes.push(focus);
+	}
 
 	nodes.forEach(node =>
 	{
